@@ -86,5 +86,133 @@ class VezbaController extends Controller
 
     }
 
+    public function store(Request $request)
+    {
+        try
+        {
+            $user = Auth::user();
+            if($user->role!='trener'){
+                return response()->json([
+                    'error' => 'Nemate dozvolu za kreiranje vezbi.',
+                ], 403); 
+            }
+
+
+            $validated = $request->validate([
+                'naziv' => 'required|string',
+                'opis' => 'required|string',
+                'slika' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048', 
+                'misici_na_koje_utice' => 'required|string',
+                'savet'=>'required|string',
+                'preporuceni_broj_ponavljanja'=>'required|numeric',
+                'preporuceni_broj_serija'=>'required|numeric',
+                'video' => 'required|mimes:mp4',
+                'grupa_misica_id' => 'required|exists:grupe_misica,id',
+                'kategorija_id' => 'required|exists:kategorije_vezba,id',
+            ]);
+
+            $korisnikId = $user->id;
+
+            $vezba = Vezba::create([
+                'naziv'=>$validated['naziv'],
+                'opis'=>$validated['opis'],
+                'slika'=>$this->upload($request->file('slika'), $validated['naziv']),
+                'misici_na_koje_utice'=>$validated['misici_na_koje_utice'],
+                'savet'=>$validated['savet'],
+                'grupa_misica_id'=>$validated['grupa_misica_id'],
+                'preporuceni_broj_serija'=>$validated['preporuceni_broj_serija'],
+                'preporuceni_broj_ponavljanja'=>$validated['preporuceni_broj_ponavljanja'],
+                'trener_id'=>$korisnikId,
+                'kategorija_id'=>$validated['kategorija_id'],
+                'video_url'=>$this->upload($request->file('video'), $validated['naziv'])
+            ]);
+
+            return response()->json([
+                'message' => 'Vezba uspešno dodata!',
+                'data' => $vezba,
+            ], 201);
+         
+        } catch (\Exception $e) {
+         
+            return response()->json([
+                'error' => 'Došlo je do greške pri cuvanju vezbe.',
+                'message'=>$e->getMessage()
+            ], 500); 
+        }
+
+    
+
+    }
+
+
+    public function update(Request $request,$id)
+    {
+        try
+        {
+            $validated = $request->validate([
+                'naziv' => 'required|string',
+                'opis' => 'required|string',
+                'slika' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', 
+                'misici_na_koje_utice' => 'required|string',
+                'savet'=>'required|string',
+                'video' => 'nullable|mimes:mp4',
+                'preporuceni_broj_ponavljanja'=>'required|numeric',
+                'preporuceni_broj_serija'=>'required|numeric',
+                'grupa_misica_id' => 'required|exists:grupe_misica,id',
+                'kategorija_id' => 'required|exists:kategorije_vezba,id',
+            ]);
+
+
+
+            $vezba = Vezba::findOrFail($id);
+
+          
+            $vezba->naziv = $validated['naziv'];
+            $vezba->opis = $validated['opis'];
+            $vezba->misici_na_koje_utice = $validated['misici_na_koje_utice'];
+            $vezba->savet = $validated['savet'];
+            $vezba->grupa_misica_id = $validated['grupa_misica_id'];
+            $vezba->kategorija_id = $validated['kategorija_id'];
+            $vezba->preporuceni_broj_serija = $validated['preporuceni_broj_serija'];
+            $vezba->preporuceni_broj_ponavljanja = $validated['preporuceni_broj_ponavljanja'];
+    
+            
+            if ($request->hasFile('video')) {
+                if (File::exists($vezba->video_url)) {
+                    File::delete($vezba->video_url);
+                }
+               $vezba->video_url =  $this->upload($request->file('video'), $validated['naziv']);
+    
+            }
+
+            if ($request->hasFile('slika')) {
+                if (File::exists($vezba->slika)) {
+                    File::delete($vezba->slika);
+                }
+               $vezba->slika =  $this->upload($request->file('slika'), $validated['naziv']);
+    
+            }
+    
+           
+            $vezba->save();
+    
+            return response()->json([
+                'message' => 'Vezba je uspešno izmenjena!',
+                'data' => $vezba
+            ], 200);
+
+
+        } catch (\Exception $e) {
+         
+            return response()->json([
+                'error' => 'Došlo je do greške pri azuriranju vezbi.',
+                'message'=>$e->getMessage()
+            ], 500); 
+        }
+
+    
+
+    }
+
 
 }

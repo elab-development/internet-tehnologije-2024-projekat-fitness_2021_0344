@@ -31,5 +31,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/vezbe/video/{id}', [VezbaController::class, 'video'])->name('vezba.video');
     Route::get('/vezbe',[VezbaController::class,'index']);
     Route::get('/vezbe/{id}',[VezbaController::class,'show']);
+    Route::post('/vezbe',[VezbaController::class,'store']);
+    Route::put('/vezbe/{id}',[VezbaController::class,'update']);
 
     });

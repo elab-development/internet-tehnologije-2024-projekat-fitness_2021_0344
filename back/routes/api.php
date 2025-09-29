@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FitnesDnevnikController;
 use App\Http\Controllers\GrupaMisicaController;
+use App\Http\Controllers\VezbaController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -26,5 +27,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/grupe-misica',[GrupaMisicaController::class,'store']);
     Route::get('/grupe-misica',[GrupaMisicaController::class,'index']);
     Route::get('/grupe-misica/{id}',[GrupaMisicaController::class,'show']);
+
+    Route::get('/vezbe/video/{id}', [VezbaController::class, 'video'])->name('vezba.video');
+    Route::get('/vezbe',[VezbaController::class,'index']);
+    Route::get('/vezbe/{id}',[VezbaController::class,'show']);
 
     });

@@ -37,4 +37,29 @@ class UserController extends Controller
 
 
     
+    public function vratiTrenere()
+    {
+        try
+        {
+            $user = Auth::user();
+            if($user->role!='admin'){
+                return response()->json([
+                    'error' => 'Nemate dozvolu za pregled trenera.',
+                ], 403); 
+            }
+
+            $treneri = User::where('role', 'trener')->paginate(5);
+            return UserResource::collection($treneri);
+            
+         
+        } catch (\Exception $e) {
+         
+            return response()->json([
+                'error' => 'Došlo je do greške pri ucitavanju trenera.',
+                'message'=>$e->getMessage()
+            ], 500); 
+        }
+
+    }
+    
 }

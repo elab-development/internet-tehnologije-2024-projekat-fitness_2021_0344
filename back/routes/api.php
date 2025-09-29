@@ -12,5 +12,6 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanc
 Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/vezbaci/dnevnici',[UserController::class,'dnevnici']);
+     Route::get('/treneri',[UserController::class,'vratiTrenere']);
 
     });

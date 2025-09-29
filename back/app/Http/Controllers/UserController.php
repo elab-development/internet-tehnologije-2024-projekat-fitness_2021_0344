@@ -61,5 +61,103 @@ class UserController extends Controller
         }
 
     }
+
+    
+    public function obrisiTrenera($id)
+    {
+        try
+        {
+            $user = Auth::user();
+            if($user->role!='admin'){
+                return response()->json([
+                    'error' => 'Nemate dozvolu za brisanje trenera.',
+                ], 403); 
+            }
+            $trener = User::findOrFail($id);
+            if($trener->role!='trener')
+            {
+                return response()->json([
+                    'error' => 'Pokusavate da obrisete korisnika koji nije trener.',
+                ], 500); 
+            }
+
+            $trener->delete();
+            return response()->json([
+                'message' => 'Uspesno ste obrisali trenera.',
+            ], 200); 
+         
+        } catch (\Exception $e) {
+         
+            return response()->json([
+                'error' => 'Došlo je do greške pri brisanju trenera.',
+                'message'=>$e->getMessage()
+            ], 500); 
+        }
+
+    }
+
+
+
+
+
+    
+    public function vratiVezbace()
+    {
+        try
+        {
+            $user = Auth::user();
+            if($user->role!='admin'){
+                return response()->json([
+                    'error' => 'Nemate dozvolu za pregled vezbaca.',
+                ], 403); 
+            }
+
+            $vezbaci = User::where('role', 'vezbac')->paginate(5);
+            return UserResource::collection($vezbaci);
+            
+         
+        } catch (\Exception $e) {
+         
+            return response()->json([
+                'error' => 'Došlo je do greške pri ucitavanju vezbaca.',
+                'message'=>$e->getMessage()
+            ], 500); 
+        }
+
+    }
+    
+
+    public function obrisiVezbaca($id)
+    {
+        try
+        {
+            $user = Auth::user();
+            if($user->role!='admin'){
+                return response()->json([
+                    'error' => 'Nemate dozvolu za brisanje vezbaca.',
+                ], 403); 
+            }
+            $vezbac = User::findOrFail($id);
+            if($vezbac->role!='vezbac')
+            {
+                return response()->json([
+                    'error' => 'Pokusavate da obrisete korisnika koji nije vezbac.',
+                ], 500); 
+            }
+
+            $vezbac->delete();
+            return response()->json([
+                'message' => 'Uspesno ste obrisali vezbaca.',
+            ], 200); 
+         
+        } catch (\Exception $e) {
+         
+            return response()->json([
+                'error' => 'Došlo je do greške pri brisanju vezbaca.',
+                'message'=>$e->getMessage()
+            ], 500); 
+        }
+
+    }
     
 }

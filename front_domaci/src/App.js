@@ -14,6 +14,10 @@ import TrainingPlan from './Components/TrainingPlan';
 import AddExercise from './Components/AddExercise';
 import PlansPage from './Components/PlansPage';
 import PlanDetailsPage from './Components/PlanDetailsPage';
+import MojDnevnik from './Components/MojDnevnik';
+import DodajNoviDnevnik from './Components/DodajNoviDnevnik';
+import DnevnikDetails from './Components/DnevnikDetails';
+import DodajAktivnost from './Components/DodajAktivnost';
 function App() {
   return (
     <Router>
@@ -31,6 +35,10 @@ function App() {
           <Route path="/dodaj-vezbu" element={<AddExercise />} /> 
             <Route path="/planovi" element={<PlansPage />} /> 
           <Route path="/plan/:planId" element={<PlanDetailsPage />} />
+              <Route path="/moj-dnevnik" element={<MojDnevnik />} /> 
+          <Route path="/dodaj-dnevnik" element={<DodajNoviDnevnik />} /> 
+          <Route path="/dnevnik/:dnevnikId" element={<DnevnikDetails />} />
+          <Route path="/dodaj-aktivnost/:dnevnikId" element={<DodajAktivnost />} />
         </Routes>
       </div>
     </Router>

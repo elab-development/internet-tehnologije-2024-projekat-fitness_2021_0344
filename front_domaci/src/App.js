@@ -10,6 +10,10 @@ import Treneri from './Components/Treneri';
 import Vezbaci from './Components/Vezbaci';
 import MuscleExercises from './Components/MuscleExercises';
 import ExerciseDetails from './Components/ExerciseDetails';
+import TrainingPlan from './Components/TrainingPlan';
+import AddExercise from './Components/AddExercise';
+import PlansPage from './Components/PlansPage';
+import PlanDetailsPage from './Components/PlanDetailsPage';
 function App() {
   return (
     <Router>
@@ -23,6 +27,10 @@ function App() {
           <Route path="/vezbaci" element={<Vezbaci />} /> 
           <Route path="/grupa/:muscleGroupId" element={<MuscleExercises />} /> 
           <Route path="/exercise/:exerciseId" element={<ExerciseDetails />} /> 
+           <Route path="/kreiraj-plan" element={<TrainingPlan />} /> 
+          <Route path="/dodaj-vezbu" element={<AddExercise />} /> 
+            <Route path="/planovi" element={<PlansPage />} /> 
+          <Route path="/plan/:planId" element={<PlanDetailsPage />} />
         </Routes>
       </div>
     </Router>

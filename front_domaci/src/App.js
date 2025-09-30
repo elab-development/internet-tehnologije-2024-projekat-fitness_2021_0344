@@ -4,7 +4,8 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from './Components/Login';
 import Register from './Components/Register';
-
+import Muscles from './Components/Muscles';
+import DodajGrupu from './Components/DodajGrupu';
 
 function App() {
   return (
@@ -13,6 +14,8 @@ function App() {
         <Routes>
             <Route path="/" element={<Login />} />  
           <Route path="/register" element={<Register />} /> 
+           <Route path="/muscle-group" element={<Muscles />} /> 
+          <Route path="/add-group" element={<DodajGrupu />} /> 
         </Routes>
       </div>
     </Router>

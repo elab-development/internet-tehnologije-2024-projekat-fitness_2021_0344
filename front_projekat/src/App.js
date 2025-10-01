@@ -7,6 +7,8 @@ import Muscles from './Components/Muscles';
 import DodajGrupu from './Components/DodajGrupu';
 import Treneri from './Components/Treneri';
 import Vezbaci from './Components/Vezbaci';
+import MuscleExercises from './Components/MuscleExercises';
+import ExerciseDetails from './Components/ExerciseDetails';
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
           <Route path="/add-group" element={<DodajGrupu />} /> 
           <Route path="/treneri" element={<Treneri />} /> 
           <Route path="/vezbaci" element={<Vezbaci />} /> 
+          <Route path="/grupa/:muscleGroupId" element={<MuscleExercises />} /> 
+          <Route path="/exercise/:exerciseId" element={<ExerciseDetails />} /> 
         </Routes>
       </div>
     </Router>

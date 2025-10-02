@@ -11,6 +11,8 @@ import MuscleExercises from './Components/MuscleExercises';
 import ExerciseDetails from './Components/ExerciseDetails';
 import TrainingPlan from './Components/TrainingPlan';
 import AddExercise from './Components/AddExercise';
+import MojDnevnik from './Components/MojDnevnik';
+import DodajNoviDnevnik from './Components/DodajNoviDnevnik';
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
           <Route path="/exercise/:exerciseId" element={<ExerciseDetails />} /> 
            <Route path="/kreiraj-plan" element={<TrainingPlan />} /> 
           <Route path="/dodaj-vezbu" element={<AddExercise />} /> 
+           <Route path="/moj-dnevnik" element={<MojDnevnik />} /> 
+          <Route path="/dodaj-dnevnik" element={<DodajNoviDnevnik />} /> 
         </Routes>
       </div>
     </Router>

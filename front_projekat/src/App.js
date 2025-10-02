@@ -17,6 +17,7 @@ import DnevnikDetails from './Components/DnevnikDetails';
 import DodajAktivnost from './Components/DodajAktivnost';
 import PlansPage from './Components/PlansPage';
 import PlanDetailsPage from './Components/PlanDetailsPage';
+import YouTube from './Components/Youtube';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           <Route path="/dodaj-aktivnost/:dnevnikId" element={<DodajAktivnost />} />
            <Route path="/planovi" element={<PlansPage />} /> 
           <Route path="/plan/:planId" element={<PlanDetailsPage />} />
+          <Route path="/youtube" element={<YouTube />} /> 
         </Routes>
       </div>
     </Router>

@@ -15,6 +15,8 @@ import MojDnevnik from './Components/MojDnevnik';
 import DodajNoviDnevnik from './Components/DodajNoviDnevnik';
 import DnevnikDetails from './Components/DnevnikDetails';
 import DodajAktivnost from './Components/DodajAktivnost';
+import PlansPage from './Components/PlansPage';
+import PlanDetailsPage from './Components/PlanDetailsPage';
 
 function App() {
   return (
@@ -35,6 +37,8 @@ function App() {
           <Route path="/dodaj-dnevnik" element={<DodajNoviDnevnik />} /> 
           <Route path="/dnevnik/:dnevnikId" element={<DnevnikDetails />} />
           <Route path="/dodaj-aktivnost/:dnevnikId" element={<DodajAktivnost />} />
+           <Route path="/planovi" element={<PlansPage />} /> 
+          <Route path="/plan/:planId" element={<PlanDetailsPage />} />
         </Routes>
       </div>
     </Router>

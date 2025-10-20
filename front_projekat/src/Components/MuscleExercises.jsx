@@ -9,7 +9,7 @@ const MuscleExercises = () => {
   const [filteredExercises, setFilteredExercises] = useState([]);
   const [categories, setCategories] = useState([]); 
   const [selectedCategory, setSelectedCategory] = useState('');
-  const [isTrainer, setIsTrainer] = useState(true);
+  const [isTrainer, setIsTrainer] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -37,7 +37,7 @@ const MuscleExercises = () => {
 
 
   const loadExercises = () => {
-    const params = selectedCategory ? { kategorija_id: selectedCategory } : {};  // Dodajemo parametar ako je selektovana kategorija
+    const params = selectedCategory ? { kategorija_id: selectedCategory } : {}; 
 
     axios.get(`http://localhost:8000/api/grupe-misica/${muscleGroupId}`, {
       headers: {

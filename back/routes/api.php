@@ -30,7 +30,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/grupe-misica',[GrupaMisicaController::class,'index']);
     Route::get('/grupe-misica/{id}',[GrupaMisicaController::class,'show']);
 
-    Route::get('/vezbe/video/{id}', [VezbaController::class, 'video'])->name('vezba.video');
+    Route::get('/vezbe/{id}/video/', [VezbaController::class, 'video'])->name('vezba.video');
     Route::get('/vezbe',[VezbaController::class,'index']);
     Route::get('/vezbe/{id}',[VezbaController::class,'show']);
     Route::post('/vezbe',[VezbaController::class,'store']);

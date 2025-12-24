@@ -1,0 +1,80 @@
+
+.treneri-container {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .treneri-container h1 {
+    text-align: center;
+    font-size: 24px;
+    color: #333 !important;
+    margin-bottom: 30px;
+  }
+  
+  .treneri-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .treneri-table th, .treneri-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #ccc;
+    color: #333;
+  }
+  
+  .treneri-table th {
+    background-color: #f4f4f9;
+    font-weight: bold;
+  }
+  
+  .delete-button {
+    background-color: #e34343; 
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .delete-button:hover {
+    background-color: #b72b2b; 
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    gap: 0.5rem;
+  }
+  
+  .pagination-button {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: #f7f7f7;
+    color: black;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .pagination-button:hover {
+    background: #0277bd;
+    color: #fff;
+  }
+  
+  .pagination-button.active {
+    background: #0277bd;
+    color: #fff;
+    border-color: #0277bd;
+  }
+  
+  .pagination-button:disabled {
+    background: #ddd;
+    cursor: not-allowed;
+  }
